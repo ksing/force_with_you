@@ -1,5 +1,6 @@
 import os
-from flask import Flask, request, redirect, url_for, flash, render_template
+from flask import Flask, request, session, g, redirect, url_for, abort, \
+     render_template, flash
 from werkzeug.utils import secure_filename
 from csv_to_html import csv_html_converter
 
@@ -7,11 +8,16 @@ from csv_to_html import csv_html_converter
 UPLOAD_FOLDER = os.path.join(os.path.expanduser('~'), 'csv_files')
 ALLOWED_EXTENSIONS = set(['csv', 'xls', 'xlsx'])
 
-app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app = Flask(__name__) # create the application instance
+app.config.from_object(__name__) # load config from this file
+app.config.update({'UPLOAD_FOLDER': UPLOAD_FOLDER})
+app.config.from_envvar('APP_SETTINGS', silent=True) # In case, it's needed
 
 
 def allowed_file(filename):
+    """
+    Check for allowed extensions on the file - csv, xls, and xlsx
+    """
     return '.' in filename and \
         filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 

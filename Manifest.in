@@ -1,0 +1,2 @@
+graft force_with_you_app/templates
+graft force_with_you_app/static
