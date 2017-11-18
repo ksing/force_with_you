@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, redirect, url_for, flash
+from flask import Flask, request, redirect, url_for, flash, render_template
 from werkzeug.utils import secure_filename
 from csv_to_html import csv_html_converter
 
@@ -13,17 +13,21 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
 @app.route('/')
-def hello_world():
-    return '''Hello, welcome to my apps. Check out the following apps:<br/>
-    <a href="/csv_to_html">csv_to_html</a>'''
+def index():
+    return render_template('index.html')
+    #return '''Hello, welcome to my apps. Check out the following apps:<br/>
+    # <a href="/csv_to_html">csv_to_html</a>'''
 
 
 @app.route('/csv_to_html', methods=['GET', 'POST'])
 def upload_file():
+    """
+    Function to upload a file and convert it to a responsive bootstrap table
+    """
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
@@ -39,12 +43,4 @@ def upload_file():
             #filename = secure_filename(file.filename)
             html = csv_html_converter(file)
             return '<a href="/csv_to_html">Go back</a><br />' + html
-    return '''
-    <!doctype html>
-    <title>Upload new File</title>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-      <p><input type=file name=file>
-         <input type=submit value=Upload>
-    </form>
-    '''
+    return render_template('form.html')
