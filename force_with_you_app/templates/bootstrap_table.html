@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block body %}
+  <a href="url_for('csv_bootstrap_table')">Go back</a><br />
+  {{ html }}
+  <h3>Copy and paste the following text</h3>
+  <textarea id="outputText" rows=50 cols=80 wrap=on readonly>{{ html_code }}</textarea>
+{% endblock %}

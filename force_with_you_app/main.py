@@ -1,6 +1,6 @@
 import os
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
+     render_template, flash, Markup
 from werkzeug.utils import secure_filename
 from csv_to_html import csv_html_converter
 from flask_sslify import SSLify
@@ -49,6 +49,7 @@ def csv_bootstrap_table():
             return redirect(request.url)
         if file and allowed_file(file.filename):
             #filename = secure_filename(file.filename)
-            html = csv_html_converter(file)
-            return '<a href="/csv_to_html">Go back</a><br />' + html
+            html_text = csv_html_converter(file)
+            html = Markup(html_text)
+            return render_template('bootstrap_table.html', html=html, html_code=html_text)
     return render_template('form.html')
