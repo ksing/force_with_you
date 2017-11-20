@@ -27,8 +27,6 @@ def allowed_file(filename):
 @app.route('/')
 def index():
     return render_template('index.html')
-    #return '''Hello, welcome to my apps. Check out the following apps:<br/>
-    # <a href="/csv_to_html">csv_to_html</a>'''
 
 
 @app.route('/csv_to_html', methods=['GET', 'POST'])
