@@ -1,9 +1,17 @@
 {% extends "base.html" %}
 {% block body %}
   <title>Convert csv file to bootstrap</title>
-  <h1>Upload new File</h1>
-  <form action="{{ url_for('csv_bootstrap_table') }}" method=post enctype=multipart/form-data>
-    <p><input type=file name=file>
-      <input type=submit value=Upload></p>
-  </form>
+  <h1 class="text-center">Convert Excel Table To Bootstrap Table</h1>
+  <form class="form-inline" action="{{ url_for('csv_bootstrap_table') }}" method=post enctype=multipart/form-data>
+      <div class="form-group">
+        <label for="file_upload">Select a CSV/XLS/XSLX file</label>
+        <input name="file" type="file" class="form-control-file" id="file_upload">
+      </div>
+      <div class="form-group">
+        <label for="sheet_number">Sheet number</label>
+        <input type="text" class="form-control" id="sheet_number" placeholder="1"  aria-describedby="helpBlock">
+        <span id="helpBlock" class="help-block"><em>Optional, if using an Excel file. Default: 1</em></span>
+      </div>
+      <button type="submit" class="btn btn-default btn-lg">Generate Table</button>
+    </form>
 {% endblock %}
