@@ -40,8 +40,6 @@ def csv_bootstrap_table():
             flash('No file part')
             return redirect(request.url)
         file = request.files['file']
-        # if user does not select file, browser also
-        # submit a empty part without filename
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
@@ -51,3 +49,16 @@ def csv_bootstrap_table():
             html = Markup(html_text)
             return render_template('bootstrap_table.html', html=html, html_code=html_text)
     return render_template('form.html')
+
+
+@app.route('/track_ga_urls', methods=['GET', 'POST'])
+def url_event_listener():
+    """
+    Modify a list of urls to track with Google analytics
+    """
+    track_template = "<a href=\"{0}\" target=\"_blank\" onclick=\"trackOutboundLink('{0}'); return false;\""
+    if request.method == 'POST':
+        urls = request.form['url_textbox']
+        track_urls = [track_template.format(url.strip()) for url in urls.split('\n')]
+        return render_template('link_tracking.html', links=track_urls)
+    return render_template('link_tracking.html', links=[])

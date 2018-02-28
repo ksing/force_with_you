@@ -5,41 +5,60 @@
 <section id="home" name="home">
 	<div id="headerwrap">
 		<div class="container-fluid">
-			<div class="row-fluid">
+		    <div class="row-fluid">
 				<h1>Wake Your Inner Jedi Up!</h1>
 				<br>
 				<h3>Let the force work for you</h3>
-				<br>
-				<br>
-				<div class="col-lg-6 col-lg-offset-3">
-				</div>
 			</div>
 		</div><!-- /container -->
 	</div><!-- /headerwrap -->
 </section>
 
 
+<section>
+  <h1 class="text-center">Convert Excel Table To Bootstrap Table</h1>
+  <form class="form-inline row" action="{{ url_for('csv_bootstrap_table') }}" method=post enctype=multipart/form-data>
+      <div class="form-group col-xs-7 col-sm-5">
+        <label for="file_upload">Select a CSV/XLS/XSLX file</label>
+        <input name="file" type="file" class="form-control-file" id="file_upload">
+      </div>
+      <div class="form-group col-xs-5 col-sm-5">
+        <label for="sheet_number">Sheet number</label>
+        <input type="text" class="form-control" id="sheet_number" placeholder="1"  aria-describedby="helpBlock">
+        <span id="helpBlock" class="help-block"><em>Optional, if using an Excel file. Default: 1</em></span>
+      </div>
+      <button type="submit" class="col-xs-12 col-sm-2 btn btn-default btn-lg">Generate Table</button>
+    </form>
+</section>
+
+<section>
+    <h1>Track URLs with Google Analytics</h1>
+    <form class="form-inline row" action="{{ url_for('url_event_listener') }}" method=post enctype=multipart/form-data>
+        <div class="form-group col-xs-9">
+            <label for="url_textbox">Paste URLs here</label>
+            <textarea class="form-control" id="url_textbox" name="url_textbox" style="width:100%;" rows="10"></textarea>
+        </div>
+        <button type="submit" class="col-xs-3 btn btn-default btn-lg">Generate Url List</button>
+    </form>
+</section>
 
 <!-- ========== ABOUT SECTION ========== -->
-<section id="about" name="about">
+<!--section id="about" name="about">
     <div id="f">
     	<div class="container-fluid">
     		<div class="row-fluid">
     			<h3>ABOUT ME</h3>
     			<p class="centered"><i class="icon icon-circle"></i><i class="icon icon-circle"></i><i class="icon icon-circle"></i></p>
-
-    			<!-- INTRO INFORMATIO-->
     			<div class="col-lg-6 col-lg-offset-3">
     				<p></p>
     				<p><button type="button" class="btn btn-warning"></button></p>
     			</div>
     		</div>
-    	</div><!-- /container -->
-    </div><!-- /f -->
-</section>
+    	</div>
+    </div>
+</section-->
 
-<!-- ========== CAROUSEL SECTION ========== -->
-<section id="portfolio" name="portfolio">
+<!--section id="portfolio" name="portfolio">
     <div id="f">
     	<div class="container-fluid">
     		<div class="row-fluid centered">
@@ -48,7 +67,6 @@
 
     			<div class="col-lg-6 col-lg-offset-3">
     				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    					<!-- Wrapper for slides -->
     					<div class="carousel-inner">
     						<div class="item active centered">
     							<img class="img-responsive" src="" alt="">
@@ -68,11 +86,11 @@
     					    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
     					</ol>
     				</div>
-    			</div><!-- col-lg-8 -->
-    		</div><!-- row-fluid -->
-    	</div><!-- container -->
-    </div>	<!-- f -->
-</section>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</section-->
 
 <!-- ========== CONTACT SECTION ========== -->
 <section id="contact" name="contact">

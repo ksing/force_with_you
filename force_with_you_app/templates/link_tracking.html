@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block body %}
+    <h1>Track URLs with Google Analytics</h1>
+    <div class="row">
+        <form class="form-inline col-sm-6" action="{{ url_for('url_event_listener') }}" method=post enctype=multipart/form-data>
+            <div class="form-group col-xs-12">
+                <label for="url_textbox">Paste URLs here</label>
+                <textarea class="form-control" id="url_textbox" name="url_textbox" rows=10 style="width:100%;"></textarea>
+            </div>
+            <button type="submit" class="btn btn-default btn-lg">Generate Url List</button>
+        </form>
+        <div class="col-sm-6">
+            <label for="output_links">Output URLs</label>
+            <textarea id="output_links" rows=10 wrap=on style="width:100%;" readonly>{% for link in links %}{{ link }}&#10;{% endfor %}</textarea>
+        </div>
+    </div>
+{% endblock %}
